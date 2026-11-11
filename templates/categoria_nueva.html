@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block titulo %}Nueva categoría{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Nueva categoría</h1>
+  <form method="post">
+    <label>Nombre <input type="text" name="nombre" maxlength="40" value="{{ nombre }}" autofocus></label>
+    <button type="submit">Guardar</button>
+    <a class="boton claro" href="{{ url_for('categorias') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,12 @@
+# Base de datos local (se crea sola al ejecutar la app)
+gestor.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/

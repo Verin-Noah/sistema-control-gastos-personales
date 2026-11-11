@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Categorías{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Categorías</h1>
+  <p><a class="boton" href="{{ url_for('categoria_nueva') }}">Nueva categoría</a></p>
+  <table>
+    <tr><th>Nombre</th><th>Tipo</th></tr>
+    {% for c in lista %}
+    <tr><td>{{ c.nombre }}</td><td>{{ 'Predefinida' if c.es_predefinida else 'Propia' }}</td></tr>
+    {% endfor %}
+  </table>
+</section>
+{% endblock %}

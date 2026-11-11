@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Control de gastos{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="{{ url_for('raiz') }}">Control de gastos</a>
+    {% if session.id_usuario %}
+    <nav>
+      <a href="{{ url_for('inicio') }}">Inicio</a>
+      <a href="{{ url_for('logout') }}">Salir ({{ session.correo }})</a>
+    </nav>
+    {% endif %}
+  </header>
+  <main>
+    {% if session.id_usuario and request.endpoint != 'inicio' %}
+    <a class="volver" href="{{ url_for('inicio') }}">&larr; Volver al inicio</a>
+    {% endif %}
+    {% for categoria, mensaje in get_flashed_messages(with_categories=true) %}
+      <div class="aviso {{ categoria }}">{{ mensaje }}</div>
+    {% endfor %}
+    {% block contenido %}{% endblock %}
+  </main>
+</body>
+</html>

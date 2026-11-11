@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Registrar aportación{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Registrar aportación</h1>
+  <p>{{ meta.nombre }}: faltan <strong>{{ falta|dinero }}</strong></p>
+  <form method="post">
+    <label>Monto aportado <input type="text" inputmode="decimal" name="monto" value="{{ datos.get('monto', '') }}"></label>
+    <label>Fecha <input type="date" name="fecha" max="{{ hoy }}" value="{{ datos.get('fecha', hoy) }}"></label>
+    <button type="submit">Guardar aportación</button>
+    <a class="boton claro" href="{{ url_for('metas') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

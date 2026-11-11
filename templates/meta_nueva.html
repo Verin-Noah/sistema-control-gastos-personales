@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Nueva meta{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Nueva meta de ahorro</h1>
+  <form method="post">
+    <label>¿Qué quieres comprar o lograr? <input type="text" name="nombre" maxlength="100" value="{{ datos.get('nombre', '') }}"></label>
+    <label>Precio aproximado <input type="text" inputmode="decimal" name="monto_objetivo" value="{{ datos.get('monto_objetivo', '') }}"></label>
+    <label>¿Para cuándo lo quieres? <input type="date" name="fecha_limite" min="{{ manana }}" value="{{ datos.get('fecha_limite', '') }}"></label>
+    <button type="submit">Guardar meta</button>
+    <a class="boton claro" href="{{ url_for('metas') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

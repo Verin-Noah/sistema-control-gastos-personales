@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Registrar deuda{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Registrar deuda</h1>
+  <form method="post">
+    <label>Nombre (¿a quién o qué se debe?) <input type="text" name="nombre" maxlength="100" value="{{ datos.get('nombre', '') }}"></label>
+    <label>Monto total <input type="text" inputmode="decimal" name="monto_total" value="{{ datos.get('monto_total', '') }}"></label>
+    <label>Fecha límite <input type="date" name="fecha_limite" min="{{ manana }}" value="{{ datos.get('fecha_limite', '') }}"></label>
+    <button type="submit">Guardar</button>
+    <a class="boton claro" href="{{ url_for('deudas') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

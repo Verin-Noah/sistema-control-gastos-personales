@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Mis gastos{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Mis gastos</h1>
+  <p class="filtros">
+    {% for clave, nombre in [('dia','Día'),('semana','Semana'),('mes','Mes')] %}
+    <a class="boton {{ '' if periodo == clave else 'claro' }}" href="{{ url_for('gastos', periodo=clave) }}">{{ nombre }}</a>
+    {% endfor %}
+  </p>
+  <p>{{ etiqueta }} ({{ desde|fecha_larga }} – {{ hasta|fecha_larga }})</p>
+  <p class="grande">{{ total|dinero }}</p>
+
+  {% if lista %}
+  <h2>Por categoría</h2>
+  <ul>{% for f in por_categoria %}<li>{{ f.categoria }}: {{ f.total|dinero }}</li>{% endfor %}</ul>
+  <h2>Detalle</h2>
+  <table>
+    <tr><th>Fecha</th><th>Categoría</th><th>Descripción</th><th class="der">Monto</th><th></th></tr>
+    {% for g in lista %}
+    <tr><td>{{ g.fecha }}</td><td>{{ g.categoria }}</td><td>{{ g.descripcion }}</td><td class="der">{{ g.monto|dinero }}</td>
+      <td class="acciones"><a href="{{ url_for('gasto_editar', id_gasto=g.id_gasto) }}">Editar</a>
+          <a href="{{ url_for('gasto_eliminar', id_gasto=g.id_gasto) }}">Eliminar</a></td></tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No hay gastos en este periodo.</p>
+  {% endif %}
+</section>
+{% endblock %}

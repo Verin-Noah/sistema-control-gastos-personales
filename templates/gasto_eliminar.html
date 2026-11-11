@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Eliminar gasto{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>¿Eliminar este gasto?</h1>
+  <p><strong>{{ gasto.monto|dinero }}</strong> en {{ gasto.categoria }}<br>
+     {{ gasto.fecha|fecha_larga }}{% if gasto.descripcion %}<br>{{ gasto.descripcion }}{% endif %}</p>
+  <p>Esta acción no se puede deshacer.</p>
+  <form method="post">
+    <button type="submit">Sí, eliminar</button>
+    <a class="boton claro" href="{{ url_for('gastos') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

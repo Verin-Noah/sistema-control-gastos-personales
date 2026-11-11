@@ -1,0 +1,67 @@
+/* Paleta: Burnt Sienna (#A0522D) como color principal */
+:root{
+  --primario:#A0522D; --primario-osc:#7d3f22; --claro:#f1e3da; --fondo:#faf6f3;
+  --texto:#2b2118; --suave:#6f6258; --borde:#e8ddd5; --blanco:#fff;
+  --positivo:#4b6b4f; --negativo:#b3402a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,"Segoe UI",Calibri,sans-serif;background:var(--fondo);color:var(--texto)}
+h1{margin:.2rem 0 1rem;font-size:1.7rem}
+a{color:var(--primario)}
+
+/* Barra superior mínima */
+.barra{background:var(--primario);color:#fff;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:.8rem 1.2rem}
+.barra a{color:#fff;text-decoration:none;margin-left:1.2rem}
+.barra a:hover{text-decoration:underline}
+.marca{font-weight:700;font-size:1.15rem;margin-left:0!important}
+main{max-width:900px;margin:1.5rem auto;padding:0 1rem}
+.volver{display:inline-block;margin-bottom:1rem;text-decoration:none;font-weight:600}
+.volver:hover{text-decoration:underline}
+
+/* Tarjetas y formularios */
+.tarjeta{background:var(--blanco);border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(60,30,10,.1)}
+.angosta{max-width:440px;margin:0 auto}
+label{display:block;margin-bottom:1rem;font-weight:600}
+input,select{display:block;width:100%;padding:.6rem;margin-top:.3rem;border:1px solid #d8c9bf;border-radius:8px;font-size:1rem;background:#fff}
+input:focus,select:focus{outline:2px solid var(--claro);border-color:var(--primario)}
+button,.boton{display:inline-block;background:var(--primario);color:#fff;border:0;border-radius:8px;padding:.6rem 1.1rem;font-size:1rem;cursor:pointer;text-decoration:none}
+button:hover,.boton:hover{background:var(--primario-osc)}
+.boton.claro{background:var(--claro);color:var(--primario)}
+.boton.claro:hover{background:#e8d3c6}
+.ayuda{margin:-.4rem 0 1rem;font-size:.9rem;color:var(--suave)}
+.aviso{padding:.7rem 1rem;border-radius:8px;margin-bottom:1rem}
+.aviso.error{background:#fbe3de;color:#8a2b1a}
+.aviso.ok{background:#e2efe3;color:#2f4d33}
+.grande{font-size:2rem;font-weight:700;margin:.3rem 0 1rem}
+table{width:100%;border-collapse:collapse}
+th,td{padding:.55rem;border-bottom:1px solid var(--borde);text-align:left}
+.der{text-align:right}
+.filtros{margin:1rem 0}
+small{color:var(--suave)}
+.negativo{color:var(--negativo)}
+.positivo{color:var(--positivo)}
+.etiqueta{background:#fbe3de;color:#8a2b1a;border-radius:4px;padding:.1rem .4rem;font-size:.8rem}
+.etiqueta.ok{background:#e2efe3;color:#2f4d33}
+.acciones a{margin-right:.7rem}
+.meta{border-top:1px solid var(--borde);padding:1rem 0}.meta h2{margin:.2rem 0 .6rem}
+.barra-progreso{background:var(--claro);border-radius:6px;height:14px;overflow:hidden}
+.barra-progreso div{background:var(--primario);height:100%}
+
+/* Pantalla de inicio: resumen + recuadros */
+.resumen{margin-bottom:1.5rem}
+.cifras{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem}
+.cifra{background:var(--blanco);border-radius:12px;padding:.9rem 1rem;box-shadow:0 1px 4px rgba(60,30,10,.08);display:flex;flex-direction:column;gap:.2rem}
+.cifra span{font-size:.85rem;color:var(--suave)}
+.cifra strong{font-size:1.25rem}
+.cifra.principal{background:var(--claro)}
+.recuadros{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.recuadro{background:var(--blanco);border-radius:14px;padding:1.4rem 1rem;text-align:center;text-decoration:none;color:var(--texto);box-shadow:0 1px 4px rgba(60,30,10,.1);transition:transform .15s,box-shadow .15s}
+.recuadro:hover{transform:translateY(-3px);box-shadow:0 6px 14px rgba(60,30,10,.15)}
+.recuadro h2{margin:.7rem 0 .2rem;font-size:1.1rem}
+.recuadro p{margin:0;color:var(--suave);font-size:.9rem}
+.circulo{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--claro);color:var(--primario)}
+.icono{width:32px;height:32px}
+@media (max-width:760px){
+  .cifras{grid-template-columns:repeat(2,1fr)}
+  .recuadros{grid-template-columns:repeat(2,1fr)}
+}

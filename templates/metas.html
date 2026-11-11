@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block titulo %}Metas de ahorro{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Metas de ahorro</h1>
+  <p><a class="boton" href="{{ url_for('meta_nueva') }}">Nueva meta</a></p>
+  {% if lista %}
+  {% for m in lista %}
+  <div class="meta">
+    <h2>{{ m.nombre }} {% if m.completada %}<span class="etiqueta ok">Completada</span>{% elif m.vencida %}<span class="etiqueta">Plazo vencido</span>{% endif %}</h2>
+    <div class="barra-progreso"><div style="width: {{ m.porcentaje }}%"></div></div>
+    <p>{{ m.ahorrado|dinero }} de {{ m.objetivo|dinero }} ({{ m.porcentaje }}%)
+       &middot; Meta para el {{ m.fecha_limite|fecha_larga }}</p>
+    {% if not m.completada %}
+    <p>Falta {{ m.falta|dinero }}. Para lograrla debes ahorrar
+       <strong>{{ m.semanal|dinero }}</strong> por semana o <strong>{{ m.mensual|dinero }}</strong> por mes.</p>
+    <a class="boton claro" href="{{ url_for('meta_aportacion', id_meta=m.id) }}">Registrar aportación</a>
+    {% endif %}
+  </div>
+  {% endfor %}
+  {% else %}
+  <p>Aún no tienes metas de ahorro.</p>
+  {% endif %}
+</section>
+{% endblock %}

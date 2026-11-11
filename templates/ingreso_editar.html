@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Editar ingreso{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Editar ingreso</h1>
+  <form method="post">
+    <label>Monto <input type="text" inputmode="decimal" name="monto" value="{{ datos.get('monto', '') }}"></label>
+    <label>Fecha <input type="date" name="fecha" max="{{ hoy }}" value="{{ datos.get('fecha', '') }}"></label>
+    <label>Descripción <input type="text" name="descripcion" maxlength="200" value="{{ datos.get('descripcion', '') }}"></label>
+    <button type="submit">Guardar cambios</button>
+    <a class="boton claro" href="{{ url_for('ingresos') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

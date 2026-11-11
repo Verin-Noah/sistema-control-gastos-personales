@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block titulo %}Mis deudas{% endblock %}
+{% block contenido %}
+<section class="tarjeta">
+  <h1>Mis deudas</h1>
+  <p><a class="boton" href="{{ url_for('deuda_nueva') }}">Registrar deuda</a></p>
+  {% if lista %}
+  <p>Total pendiente: <strong>{{ total_pendiente|dinero }}</strong><br>
+     Para cumplir a tiempo, pagar: <strong>{{ total_semanal|dinero }}</strong> por semana
+     o <strong>{{ total_mensual|dinero }}</strong> por mes.</p>
+  {% if ingresos_mes > 0 %}
+  <p>Tus ingresos de este mes son {{ ingresos_mes|dinero }}. Pagar las deudas a tiempo
+     equivale a <strong>{{ (total_mensual / ingresos_mes * 100)|round(0)|int }}%</strong> de ese ingreso
+     y te quedarían {{ (ingresos_mes - total_mensual)|dinero }}.</p>
+  {% else %}
+  <p><small>Registra tus ingresos para ver qué parte de ellos se iría en deudas.</small></p>
+  {% endif %}
+  <p class="filtros">Ordenar por:
+    <a class="boton {{ '' if orden == 'vencimiento' else 'claro' }}" href="{{ url_for('deudas', orden='vencimiento') }}">Vencimiento más próximo</a>
+    <a class="boton {{ '' if orden == 'monto' else 'claro' }}" href="{{ url_for('deudas', orden='monto') }}">Mayor monto</a>
+  </p>
+  <table>
+    <tr><th>Deuda</th><th>Vence</th><th class="der">Saldo</th><th class="der">Por semana</th><th class="der">Por mes</th><th></th></tr>
+    {% for d in lista %}
+    <tr>
+      <td>{{ d.nombre }}{% if d.vencida %} <span class="etiqueta">Vencida</span>{% endif %}</td>
+      <td>{{ d.fecha_limite|fecha_larga }}</td>
+      <td class="der">{{ d.saldo|dinero }} <small>de {{ d.monto_total|dinero }}</small></td>
+      {% if d.pendiente %}
+      <td class="der">{{ d.semanal|dinero }}</td><td class="der">{{ d.mensual|dinero }}</td>
+      <td><a class="boton claro" href="{{ url_for('deuda_pago', id_deuda=d.id) }}">Registrar pago</a></td>
+      {% else %}
+      <td colspan="3">Pagada</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+  <p><small>La cuota se calcula repartiendo el saldo entre las semanas (o meses de 30 días) que faltan hasta la fecha límite, redondeando hacia arriba. Si falta menos de un mes, la cuota mensual es el saldo completo.</small></p>
+  {% else %}
+  <p>Aún no tienes deudas registradas.</p>
+  {% endif %}
+</section>
+{% endblock %}

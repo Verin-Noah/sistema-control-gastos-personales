@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Crear cuenta{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Crear cuenta</h1>
+  <form method="post">
+    <label>Correo <input type="email" name="correo" value="{{ correo }}" required></label>
+    <label>Contraseña (mínimo 6 caracteres) <input type="password" name="contrasena" required></label>
+    <label>Confirmar contraseña <input type="password" name="confirmacion" required></label>
+    <button type="submit">Registrarme</button>
+  </form>
+  <p>¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+</section>
+{% endblock %}

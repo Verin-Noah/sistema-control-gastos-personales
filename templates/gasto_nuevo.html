@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titulo %}Registrar gasto{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Registrar gasto</h1>
+  <form method="post">
+    <label>Monto <input type="text" inputmode="decimal" name="monto" value="{{ datos.get('monto', '') }}"></label>
+    <label>Categoría
+      <select name="id_categoria">
+        <option value="">— elige —</option>
+        {% for c in categorias %}
+        <option value="{{ c.id_categoria }}" {% if datos.get('id_categoria') == c.id_categoria|string %}selected{% endif %}>{{ c.nombre }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <p class="ayuda">¿No está tu categoría? <a href="{{ url_for('categoria_nueva') }}">Crea una nueva</a></p>
+    <label>Fecha <input type="date" name="fecha" max="{{ hoy }}" value="{{ datos.get('fecha', hoy) }}"></label>
+    <label>Descripción (opcional) <input type="text" name="descripcion" maxlength="200" value="{{ datos.get('descripcion', '') }}"></label>
+    <button type="submit">Guardar</button>
+    <a class="boton claro" href="{{ url_for('gastos') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}

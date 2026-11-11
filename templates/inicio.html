@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% from "_iconos.html" import icono %}
+{% block titulo %}Inicio{% endblock %}
+{% block contenido %}
+<section class="resumen">
+  <h1>Resumen de {{ mes }}</h1>
+  <div class="cifras">
+    <div class="cifra"><span>Ingresos</span><strong class="positivo">{{ resumen.ingresos|dinero }}</strong></div>
+    <div class="cifra"><span>Gastos</span><strong>{{ resumen.gastos|dinero }}</strong></div>
+    <div class="cifra"><span>Pagos de deudas</span><strong>{{ resumen.pagos|dinero }}</strong></div>
+    <div class="cifra"><span>Aportes a metas</span><strong>{{ resumen.aportes|dinero }}</strong></div>
+    <div class="cifra principal"><span>Disponible</span><strong class="{{ 'negativo' if resumen.disponible < 0 else 'positivo' }}">{{ resumen.disponible|dinero }}</strong></div>
+  </div>
+</section>
+
+<section class="recuadros">
+  <a class="recuadro" href="{{ url_for('gasto_nuevo') }}">
+    <span class="circulo">{{ icono('gasto') }}</span>
+    <h2>Registrar gasto</h2>
+    <p>Anota un gasto nuevo</p>
+  </a>
+  <a class="recuadro" href="{{ url_for('gastos') }}">
+    <span class="circulo">{{ icono('lista') }}</span>
+    <h2>Mis gastos</h2>
+    <p>Este mes: {{ resumen.gastos|dinero }}</p>
+  </a>
+  <a class="recuadro" href="{{ url_for('ingresos') }}">
+    <span class="circulo">{{ icono('ingreso') }}</span>
+    <h2>Ingresos</h2>
+    <p>Este mes: {{ resumen.ingresos|dinero }}</p>
+  </a>
+  <a class="recuadro" href="{{ url_for('deudas') }}">
+    <span class="circulo">{{ icono('deuda') }}</span>
+    <h2>Deudas</h2>
+    <p>{% if n_deudas %}{{ n_deudas }} pendiente{{ 's' if n_deudas != 1 }} &middot; {{ saldo_deudas|dinero }}{% else %}Sin deudas pendientes{% endif %}</p>
+  </a>
+  <a class="recuadro" href="{{ url_for('metas') }}">
+    <span class="circulo">{{ icono('meta') }}</span>
+    <h2>Metas de ahorro</h2>
+    <p>{% if n_metas %}{{ n_metas }} en progreso{% else %}Sin metas activas{% endif %}</p>
+  </a>
+  <a class="recuadro" href="{{ url_for('categorias') }}">
+    <span class="circulo">{{ icono('etiqueta') }}</span>
+    <h2>Categorías</h2>
+    <p>{% if n_categorias %}{{ n_categorias }} propia{{ 's' if n_categorias != 1 }}{% else %}Crea las tuyas{% endif %}</p>
+  </a>
+</section>
+{% endblock %}

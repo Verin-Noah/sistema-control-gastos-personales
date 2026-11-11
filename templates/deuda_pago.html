@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Registrar pago{% endblock %}
+{% block contenido %}
+<section class="tarjeta angosta">
+  <h1>Registrar pago</h1>
+  <p>{{ deuda.nombre }}: saldo pendiente <strong>{{ deuda.saldo|dinero }}</strong></p>
+  <form method="post">
+    <label>Monto del pago <input type="text" inputmode="decimal" name="monto" value="{{ datos.get('monto', '') }}"></label>
+    <label>Fecha <input type="date" name="fecha" max="{{ hoy }}" value="{{ datos.get('fecha', hoy) }}"></label>
+    <button type="submit">Guardar pago</button>
+    <a class="boton claro" href="{{ url_for('deudas') }}">Cancelar</a>
+  </form>
+</section>
+{% endblock %}
