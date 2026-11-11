@@ -12,7 +12,7 @@ Navegador (HTML + CSS)  ──HTTP──►  Servidor Flask (app.py)  ──SQL�
                                    Acceso a datos (db.py)
 ```
 
-Esto corresponde al diagrama de componentes (`docs/diagramas/6_diagrama_de_componentes.png`).
+Esto corresponde al diagrama de componentes (`5_diagrama_de_componentes.png`).
 
 ## 2. Archivos y carpetas
 
@@ -29,7 +29,7 @@ Esto corresponde al diagrama de componentes (`docs/diagramas/6_diagrama_de_compo
 
 ## 3. Base de datos
 
-El esquema sale del diagrama de clases (`docs/diagramas/5_diagrama_de_clases.png`): cada clase es una tabla, cada atributo una columna y cada relación una llave foránea.
+El esquema sale del diagrama de clases (`4_diagrama_de_clases.png`): cada clase es una tabla, cada atributo una columna y cada relación una llave foránea.
 
 | Tabla | Contenido | Relación principal |
 |---|---|---|
